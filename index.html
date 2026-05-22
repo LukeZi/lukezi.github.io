@@ -106,8 +106,28 @@
               <div id="i1azz">
                 <button type="button" id="i5777">Request a call</button>
               </div>
+              <!-- Success message -->
+              <p id="successMessage" style="display:none; color:green; margin-top:10px;"></p>
             </form>
           </div>
+          <script>
+            const button = document.getElementById("i5777");
+
+            button.addEventListener("click", function () {
+                const userName = document.getElementById("iezr3").value;
+                const successMessage = document.getElementById("successMessage");
+
+                if (userName.trim() !== "") {
+                    successMessage.style.display = "block";
+                    successMessage.textContent =
+                        "Success! Thank you, " + userName + ". Your request has been sent.";
+                } else {
+                    successMessage.style.display = "block";
+                    successMessage.style.color = "red";
+                     successMessage.textContent = "Please enter your name.";
+                }
+            });
+          </script>
         </div>
       </div>
     </section>
@@ -868,6 +888,84 @@
                 <div class="auth-helper" id="iwb4uh">Already have an account? <button type="button" data-js="switch-login" id="ih7zoh">Log in instead</button>
                 </div>
               </form>
+              <script>
+                  // Formulare
+                  const loginForm = document.getElementById('i50vyt');
+                  const registerForm = document.getElementById('in18t6');
+
+                  // =========================
+                  // REGISTRIERUNG
+                  // =========================
+                  registerForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+
+                    const firstName = document.getElementById('register-first-name').value;
+                    const lastName = document.getElementById('register-last-name').value;
+                    const email = document.getElementById('register-email').value;
+                    const password = document.getElementById('register-password').value;
+                    const phone = document.getElementById('register-phone').value;
+
+                    // Prüfen ob Felder leer sind
+                    if (!firstName || !lastName || !email || !password) {
+                      alert('Bitte alle Pflichtfelder ausfüllen.');
+                      return;
+                    }
+
+                    // User speichern
+                    const user = {
+                      firstName,
+                      lastName,
+                      email,
+                      password,
+                      phone
+                    };
+
+                    localStorage.setItem('garden_user', JSON.stringify(user));
+
+                    alert('Registrierung erfolgreich!');
+
+                    // Zurück zum Login
+                    registerForm.classList.remove('is-active');
+                    loginForm.classList.add('is-active');
+
+                    // Felder leeren
+                    registerForm.reset();
+                  });
+
+                  // =========================
+                  // LOGIN
+                  // =========================
+                  loginForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+
+                    const email = document.getElementById('login-email').value;
+                    const password = document.getElementById('login-password').value;
+
+                    // User laden
+                    const storedUser = JSON.parse(localStorage.getItem('garden_user'));
+
+                    // Prüfen
+                    if (
+                      storedUser &&
+                      storedUser.email === email &&
+                      storedUser.password === password
+                    ) {
+                      localStorage.setItem('garden_logged_in', 'true');
+
+                      alert(
+                        'Willkommen zurück, ' +
+                        storedUser.firstName +
+                        '!'
+                      );
+
+                      // Weiterleitung
+                      window.location.href = 'index.html';
+
+                    } else {
+                      alert('Ungültige E-Mail oder Passwort.');
+                    }
+                  });
+              </script>
             </div>
           </div>
         </div>
@@ -1511,10 +1609,10 @@
             <a id="icejjw" href="/" class="gjs-t-link">Client Testimonials</a>
           </div>
           <div data-type-role="flex-column" id="ir1mr3" class="gjs-plg-flex-column">
-            <h1 id="i366zj">Solution</h1>
+            <h1 id="i366zj">Other Solutions</h1>
             <a id="izkahh" href="/" class="gjs-t-link">Blog Articles</a>
-            <a id="iduu0r" href="/" class="gjs-t-link">Contact Us</a>
-            <a id="ithfrh" href="/" class="gjs-t-link">FAQs</a>
+            <a id="iduu0r" href="tech.html" class="gjs-t-link">Tech Solution</a>
+            <a id="ithfrh" href="/" class="gjs-t-link">Food Solution</a>
           </div>
           <div data-type-role="flex-column" id="ixp3h3" class="gjs-plg-flex-column">
             <h1 id="izudxp">Contact</h1>
