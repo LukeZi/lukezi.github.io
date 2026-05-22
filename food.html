@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FastFood Express</title>
+    <link rel="stylesheet" href="style_food.css">
+</head>
+<body>
+
+    <header>
+        <h1>FastFood Express</h1>
+
+        <div class="header-right">
+            <button id="darkmode-toggle">
+                Darkmode
+            </button>
+
+            <div class="cart-icon">
+                Warenkorb: <span id="cart-count">0</span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+
+        <section class="products" id="products">
+
+        </section>
+
+        <section class="cart">
+            <h2>Warenkorb</h2>
+
+            <div id="cart-items"></div>
+
+            <div class="cart-total">
+                Gesamt: <span id="total-price">0.00 €</span>
+            </div>
+
+            <button id="order-btn">Jetzt bestellen</button>
+        </section>
+
+    </main>
+
+    <script src="script_food.js"></script>
+</body>
+</html>
