@@ -156,6 +156,20 @@ main {
     font-weight: bold;
 }
 
+.home-button {
+    background: white;
+    color: #333;
+    text-decoration: none;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.home-button:hover {
+    background: #ececec;
+}
+
 #order-btn {
     margin-top: 20px;
     width: 100%;
