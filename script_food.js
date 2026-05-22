@@ -1,4 +1,5 @@
-﻿const products = [
+﻿
+const products = [
     {
         id: 1,
         name: "Cheeseburger",
@@ -77,8 +78,8 @@ function renderProducts() {
 
             <button class="nutrition-btn"
                 onclick="toggleNutrition(${product.id})">
-                Nährwerte anzeigen
-            </button>
+                Nutrition anzeigen
+            </button> 
 
             <div
                 class="nutrition-box"
