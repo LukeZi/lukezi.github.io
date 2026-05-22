@@ -1,0 +1,37 @@
+@media(max-width: 900px) {
+
+  .hero-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .nav {
+    position: absolute;
+    top: 80px;
+    right: -100%;
+    flex-direction: column;
+    background: var(--surface);
+    padding: 30px;
+    border-radius: 12px;
+    transition: 0.3s;
+  }
+
+  .nav.active {
+    right: 20px;
+  }
+
+  .burger {
+    display: block;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2rem;
+  }
+
+  .hero h1 {
+    font-size: 2.8rem;
+  }
+}
