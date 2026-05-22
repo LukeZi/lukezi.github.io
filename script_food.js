@@ -1,4 +1,4 @@
-const products = [
+ï»¿const products = [
     {
         id: 1,
         name: "Cheeseburger",
@@ -77,7 +77,7 @@ function renderProducts() {
 
             <button class="nutrition-btn"
                 onclick="toggleNutrition(${product.id})">
-                Nährwerte anzeigen
+                NÃ¤hrwerte anzeigen
             </button>
 
             <div
@@ -203,14 +203,14 @@ document
     ) {
         message.style.color = "red";
         message.textContent =
-            "Bitte alle Felder korrekt ausfüllen.";
+            "Bitte alle Felder korrekt ausfÃ¼llen.";
         return;
     }
 
     if (!zipRegex.test(zipcode)) {
         message.style.color = "red";
         message.textContent =
-            "Bitte gültige Postleitzahl eingeben.";
+            "Bitte gÃ¼ltige Postleitzahl eingeben.";
         return;
     }
 
