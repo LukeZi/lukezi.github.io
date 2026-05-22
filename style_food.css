@@ -170,6 +170,71 @@ main {
     background: #ececec;
 }
 
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.delivery-form {
+    background: var(--card-color);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.delivery-form h2 {
+    margin-bottom: 20px;
+}
+
+.delivery-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.delivery-form input {
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background: transparent;
+    color: var(--text-color);
+    font-size: 16px;
+}
+
+.delivery-form input:focus {
+    outline: none;
+    border-color: var(--button-color);
+}
+
+#form-message {
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+.nutrition-btn {
+    margin-top: 10px;
+    background: #444;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.nutrition-btn:hover {
+    background: #666;
+}
+
+.nutrition-box {
+    margin-top: 10px;
+    background: rgba(0,0,0,0.05);
+    padding: 10px;
+    border-radius: 8px;
+    text-align: left;
+    font-size: 14px;
+}
+
 #order-btn {
     margin-top: 20px;
     width: 100%;

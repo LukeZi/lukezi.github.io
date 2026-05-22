@@ -8,29 +8,30 @@
 </head>
 <body>
 
-    <header>
-        <h1>FastFood Express</h1>
+<header>
+    <h1>FastFood Express</h1>
 
-        <div class="header-right">
-            <a href="index.html" class="home-button">
-                Startseite
-            </a>
+    <div class="header-right">
 
-            <button id="darkmode-toggle">
-                Darkmode
-            </button>
+        <a href="index.html" class="home-button">
+            Startseite
+        </a>
 
-            <div class="cart-icon">
-                Warenkorb: <span id="cart-count">0</span>
-            </div>
+        <button id="darkmode-toggle">
+            Darkmode
+        </button>
+
+        <div class="cart-icon">
+            Warenkorb: <span id="cart-count">0</span>
         </div>
-    </header>
+    </div>
+</header>
 
-    <main>
+<main>
 
-        <section class="products" id="products">
+    <section class="products" id="products"></section>
 
-        </section>
+    <section class="sidebar">
 
         <section class="cart">
             <h2>Warenkorb</h2>
@@ -38,14 +39,57 @@
             <div id="cart-items"></div>
 
             <div class="cart-total">
-                Gesamt: <span id="total-price">0.00 €</span>
+                Gesamt: <span id="total-price">0.00 Euro</span>
             </div>
-
-            <button id="order-btn">Jetzt bestellen</button>
         </section>
 
-    </main>
+        <section class="delivery-form">
+            <h2>Lieferadresse</h2>
 
-    <script src="script_food.js"></script>
+            <form id="address-form">
+
+                <input
+                    type="text"
+                    id="fullname"
+                    placeholder="Vor- und Nachname"
+                    required
+                >
+
+                <input
+                    type="text"
+                    id="street"
+                    placeholder="Straße und Hausnummer"
+                    required
+                >
+
+                <input
+                    type="text"
+                    id="city"
+                    placeholder="Ort"
+                    required
+                >
+
+                <input
+                    type="text"
+                    id="zipcode"
+                    placeholder="Postleitzahl"
+                    required
+                >
+
+                <button type="submit" id="order-btn">
+                    Jetzt bestellen
+                </button>
+
+            </form>
+
+            <div id="form-message"></div>
+
+        </section>
+
+    </section>
+
+</main>
+
+<script src="script_food.js"></script>
 </body>
 </html>

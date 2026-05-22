@@ -3,25 +3,49 @@ const products = [
         id: 1,
         name: "Cheeseburger",
         price: 5.99,
-        image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd"
+        image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd",
+        nutrition: {
+            calories: 320,
+            protein: "18g",
+            fat: "14g",
+            carbs: "30g"
+        }
     },
     {
         id: 2,
         name: "Pommes",
         price: 3.49,
-        image: "https://images.unsplash.com/photo-1576107232684-1279f390859f"
+        image: "https://images.unsplash.com/photo-1576107232684-1279f390859f",
+        nutrition: {
+            calories: 280,
+            protein: "4g",
+            fat: "12g",
+            carbs: "38g"
+        }
     },
     {
         id: 3,
         name: "Pizza Salami",
         price: 8.99,
-        image: "https://images.unsplash.com/photo-1513104890138-7c749659a591"
+        image: "https://images.unsplash.com/photo-1513104890138-7c749659a591",
+        nutrition: {
+            calories: 540,
+            protein: "22g",
+            fat: "20g",
+            carbs: "55g"
+        }
     },
     {
         id: 4,
         name: "Cola",
         price: 2.49,
-        image: "https://images.unsplash.com/photo-1581636625402-29b2a704ef13"
+        image: "https://images.unsplash.com/photo-1581636625402-29b2a704ef13",
+        nutrition: {
+            calories: 140,
+            protein: "0g",
+            fat: "0g",
+            carbs: "35g"
+        }
     }
 ];
 
@@ -36,20 +60,50 @@ function renderProducts() {
     productsContainer.innerHTML = "";
 
     products.forEach(product => {
+
         const productDiv = document.createElement("div");
         productDiv.classList.add("product");
 
         productDiv.innerHTML = `
             <img src="${product.image}" alt="${product.name}">
+
             <h3>${product.name}</h3>
-            <p>${product.price.toFixed(2)} €</p>
+
+            <p>${product.price.toFixed(2)} Euro</p>
+
             <button onclick="addToCart(${product.id})">
                 In den Warenkorb
             </button>
+
+            <button class="nutrition-btn"
+                onclick="toggleNutrition(${product.id})">
+                Nährwerte anzeigen
+            </button>
+
+            <div
+                class="nutrition-box"
+                id="nutrition-${product.id}"
+                style="display:none;"
+            >
+                <strong>Kalorien:</strong> ${product.nutrition.calories} kcal<br>
+                <strong>Protein:</strong> ${product.nutrition.protein}<br>
+                <strong>Fett:</strong> ${product.nutrition.fat}<br>
+                <strong>Kohlenhydrate:</strong> ${product.nutrition.carbs}
+            </div>
         `;
 
         productsContainer.appendChild(productDiv);
     });
+}
+
+function toggleNutrition(id) {
+    const box = document.getElementById(`nutrition-${id}`);
+
+    if (box.style.display === "none") {
+        box.style.display = "block";
+    } else {
+        box.style.display = "none";
+    }
 }
 
 function addToCart(id) {
@@ -76,16 +130,18 @@ function updateCart() {
     let count = 0;
 
     cart.forEach(item => {
+
         total += item.price * item.quantity;
         count += item.quantity;
 
         const cartItem = document.createElement("div");
+
         cartItem.classList.add("cart-item");
 
         cartItem.innerHTML = `
             <div>
                 <strong>${item.name}</strong><br>
-                ${item.quantity} x ${item.price.toFixed(2)} €
+                ${item.quantity} x ${item.price.toFixed(2)} Euro
             </div>
 
             <div class="cart-item-controls">
@@ -97,7 +153,7 @@ function updateCart() {
         cartItems.appendChild(cartItem);
     });
 
-    totalPrice.textContent = total.toFixed(2) + " €";
+    totalPrice.textContent = total.toFixed(2) + " Euro";
     cartCount.textContent = count;
 }
 
@@ -115,16 +171,57 @@ function changeQuantity(id, change) {
     updateCart();
 }
 
-document.getElementById("order-btn").addEventListener("click", () => {
+/* ---------------- */
+/* FORM VALIDATION */
+/* ---------------- */
+
+document
+.getElementById("address-form")
+.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    const fullname = document.getElementById("fullname").value.trim();
+    const street = document.getElementById("street").value.trim();
+    const city = document.getElementById("city").value.trim();
+    const zipcode = document.getElementById("zipcode").value.trim();
+
+    const message = document.getElementById("form-message");
+
+    const zipRegex = /^[0-9]{5}$/;
+
     if (cart.length === 0) {
-        alert("Dein Warenkorb ist leer!");
+        message.style.color = "red";
+        message.textContent = "Der Warenkorb ist leer.";
         return;
     }
 
-    alert("Bestellung erfolgreich abgeschickt!");
+    if (
+        fullname.length < 3 ||
+        street.length < 5 ||
+        city.length < 2
+    ) {
+        message.style.color = "red";
+        message.textContent =
+            "Bitte alle Felder korrekt ausfüllen.";
+        return;
+    }
+
+    if (!zipRegex.test(zipcode)) {
+        message.style.color = "red";
+        message.textContent =
+            "Bitte gültige Postleitzahl eingeben.";
+        return;
+    }
+
+    message.style.color = "green";
+    message.textContent =
+        "Bestellung erfolgreich abgeschickt!";
 
     cart = [];
     updateCart();
+
+    document.getElementById("address-form").reset();
 });
 
 /* ---------------- */
@@ -134,6 +231,7 @@ document.getElementById("order-btn").addEventListener("click", () => {
 const darkmodeToggle = document.getElementById("darkmode-toggle");
 
 darkmodeToggle.addEventListener("click", () => {
+
     document.body.classList.toggle("darkmode");
 
     if (document.body.classList.contains("darkmode")) {
@@ -144,6 +242,7 @@ darkmodeToggle.addEventListener("click", () => {
 });
 
 function loadTheme() {
+
     const savedTheme = localStorage.getItem("theme");
 
     if (savedTheme === "dark") {
