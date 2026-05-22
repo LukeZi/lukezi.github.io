@@ -32,7 +32,7 @@ if(loginForm) {
       localStorage.setItem('tf_logged_in', 'true');
 
       alert('Login successful!');
-      window.location.href = 'index.html';
+      window.location.href = 'tech.html';
     } else {
       alert('Invalid credentials');
     }
